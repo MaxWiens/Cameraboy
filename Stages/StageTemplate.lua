@@ -1,11 +1,41 @@
 return function(arg1, arg2, ...)
 	return {
-		unlayered ={
+		unlayered = {
 
 		},
 		layers = {
-			{
-				xParalax = 5,
+			[1] = {
+				xParalax = 0,
+				yParalax = 0,
+
+				objects = {
+					Object1(12,32),
+					Object3(12,32),
+					Object5(12,32, {prop1 = 5, prop2 = "yello"})
+				}
+			},
+			[2] = {
+				xParalax = 0,
+				yParalax = 0,
+
+				objects = {
+					Object1(12,32),
+					Object3(12,32),
+					Object5(12,32, {prop1 = 5, prop2 = "yello"})
+				}
+			},
+			[3] = {
+				xParalax = 0,
+				yParalax = 0,
+
+				objects = {
+					Object1(12,32),
+					Object3(12,32),
+					Object5(12,32, {prop1 = 5, prop2 = "yello"})
+				}
+			},
+			[4] = {
+				xParalax = 0,
 				yParalax = 0,
 
 				objects = {
@@ -13,38 +43,8 @@ return function(arg1, arg2, ...)
 					Object3(12,32)
 					Object5(12,32, {prop1 = 5, prop2 = "yello"})
 				}
-			},
-			{
-				xParalax = 4,
-				yParalax = 4,
-
-				objects = {
-					Object1(12,32),
-					Object3(12,32)
-					Object5(12,32, {prop1 = 5, prop2 = "yello"})
-				}
-			},
-			{
-				xParalax = 2,
-				yParalax = 2,
-
-				objects = {
-					Object1(12,32),
-					Object3(12,32)
-					Object5(12,32, {prop1 = 5, prop2 = "yello"})
-				}
-			},
-			{
-				xParalax = 1,
-				yParalax = 1,
-
-				objects = {
-					Object1(12,32),
-					Object3(12,32)
-					Object5(12,32, {prop1 = 5, prop2 = "yello"})
-				}
 			}
-			{
+			[5] = {
 				xParalax = 0,
 				yParalax = 0,
 

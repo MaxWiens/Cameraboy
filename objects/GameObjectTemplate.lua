@@ -1,5 +1,5 @@
 
-module("object.GameObjectTemplate")
+module("objects.GameObjectTemplate")
 
 return function(x, y, properties)
 	local public = {}

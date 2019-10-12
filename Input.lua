@@ -7,18 +7,28 @@ module("Input")
 return function()
 	local public = {}
 	local _inputs = {
-		-- "up",
-		-- "down",
-		-- "left",
-		-- "right"
+		"up",
+		"down",
+		"left",
+		"right",
+
+		"record",
+		"rewind",
+		"pause",
+		"play",
 	}
 	local _inputCount = #_inputs
 
 	local _keyboard = {
-		-- function() return isDown("w") end,
-		-- function() return isDown("s") end,
-		-- function() return isDown("a") end,
-		-- function() return isDown("d") end
+		function() if isDown("w") or isDown("up")		then return true end return false end,
+		function() if isDown("s") or isDown("down")	then return true end return false end,
+		function() if isDown("a") or isDown("left")	then return true end return false end,
+		function() if isDown("d") or isDown("right")then return true end return false end,
+
+		function() return isDown("space") end,
+		function() if isDown("z") or isDown("j")		then return true end return false end,
+		function() if isDown("x") or isDown("k")		then return true end return false end,
+		function() if isDown("c") or isDown("l")		then return true end return false end,
 	}
 
 	local _controller = {
@@ -47,7 +57,7 @@ return function()
 		return _previous[input] and not _current[input]
 	end
 
-	public.isDown = function()
+	public.isDown = function(input)
 		return _current[input]
 	end
 

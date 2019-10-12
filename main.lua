@@ -1,5 +1,6 @@
-local VIEW_WIDTH = 320
-local VIEW_HEIGHT = 180
+local C = require "Constants"
+local VIEW_WIDTH = C.VIEW_WIDTH
+local VIEW_HEIGHT = C.VIEW_HEIGHT
 local camera = require"Camera"(VIEW_WIDTH, VIEW_HEIGHT)
 system = require"System"(camera)
 local systemUpdate = system.update
@@ -21,11 +22,10 @@ function love.load()
 	Settings:setAudio()
 	love.resize(love.window.getMode())
 	-- Initial Loading --
-
-
+	system.loadStage(require("stages.Stage1")())	
+	system.state = {time="normal", record = false, timeSince = 0}
 	-- End Initial Loading --
 end
-
 
 function love.update(dt)
 	camera.update()
