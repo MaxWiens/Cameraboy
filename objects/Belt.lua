@@ -8,7 +8,7 @@ local draw = love.graphics.draw
 local pi = math.pi
 local print = print
 local input = input
-module("objects.MoveBlock")
+module("objects.Belt")
 local image = newImage("assets/objects/conveyorbelt.png")
 
 local MOVE_COOLDOWN = 0.13

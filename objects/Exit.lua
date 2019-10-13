@@ -9,12 +9,12 @@ local pi = math.pi
 local print = print
 local input = input
 local system = system
-module("objects.MoveBlock")
-local openImage = newImage("assets/objects/doorOpen (2).png")
+local require = require
+module("objects.Exit")
+local image = newImage("assets/objects/arrow.png")
 return function(x, y, properties)
 	local public = {}
-	-- Object Body --
-
+  -- Object Body --
   public.x = x or 0
   public.y = y or 0
   local _level = properties.level
@@ -37,7 +37,7 @@ return function(x, y, properties)
     elseif  _looking == "left" then
       angle = 3*pi/2
     end
-    draw(image, x+(public.x-1)*TILE_SIZE+TILE_SIZE/2, y+(public.y-1)*TILE_SIZE+TILE_SIZE/2, angle, TILE_SIZE/2, TILE_SIZE/2)
+    draw(image, x+(public.x-1)*TILE_SIZE+TILE_SIZE/2, y+(public.y-1)*TILE_SIZE+TILE_SIZE/2, angle, 1, 1, TILE_SIZE/2, TILE_SIZE/2)
   end
 
   -------------

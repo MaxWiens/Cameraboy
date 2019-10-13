@@ -8,7 +8,7 @@ local draw = love.graphics.draw
 
 local print = print
 local input = input
-module("objects.MoveBlock")
+module("objects.Lever")
 local image = newImage("assets/objects/lever (2).png")
 return function(x, y, properties)
 	local public = {}

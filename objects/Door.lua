@@ -8,7 +8,7 @@ local draw = love.graphics.draw
 local pi = math.pi
 local print = print
 local input = input
-module("objects.MoveBlock")
+module("objects.Door")
 local openImage = newImage("assets/objects/doorOpen (2).png")
 local closeImage = newImage("assets/objects/doorClose (2).png")
 return function(x, y, properties)

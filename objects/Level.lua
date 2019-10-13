@@ -1,7 +1,8 @@
 local input = input
 local state = system.state
 local RECORD_TOTAL = require "Constants".RECORD_TOTAL
-
+local require = require
+local system = system
 local print = print
 module("objects.GameObjectTemplate")
 
@@ -24,6 +25,7 @@ return function(x, y, properties)
   public.moveCooldown = 0
   public.move = false
   local _currentStage = properties.currentStage
+  
 
   public.update = function(dt)
     if public.moveCooldown > 0 then
@@ -41,7 +43,7 @@ return function(x, y, properties)
     -- print("prev:", _previousRecording,  "timesence:", state.timeSince)
     
     if input.pressed "reset" then
-      system.loadStage(require(currentStage)())
+      system.loadStage(require(_currentStage)())
     end
 
     if time == "normal" then

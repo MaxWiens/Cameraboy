@@ -20,7 +20,7 @@ function love.load()
 	Settings:setAudio()
 	love.resize(love.window.getMode())
 	-- Initial Loading --
-	system.loadStage(require("stages.Stage1")())	
+	system.loadStage(require("stages.Stage2")())	
 	system.state = {time="normal", record = false, timeSince = 0}
 	-- End Initial Loading --
 end

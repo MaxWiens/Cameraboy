@@ -1,10 +1,12 @@
 local Level = require "objects.Level"
 local Player = require "objects.Player"
+local Exit = require "objects.Exit"
 local MoveBlock = require "objects.MoveBlock"
 local Lever = require "objects.Lever"
 local Door = require "objects.Door"
 local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
+
 
 local tilePaths = {
   "assets/tiles/wallV.png",
@@ -41,7 +43,8 @@ return function()
     width = mapWidth,
     height = mapHeight,
     player = player,
-    objects = mapObjects
+    objects = mapObjects,
+    currentStage = "Stages/Stage2"
   })
 
   local playerx = 3
@@ -85,6 +88,11 @@ return function()
 
 				objects = {
           CTileGraphic(tileArrayImage, tileMap, mapWidth, mapHeight),
+          Exit(1,4, {
+            level = level,
+            looking = "left",
+            nextStage = "Stages/Stage3"
+          })
 				}
 			},
 			[2] = {

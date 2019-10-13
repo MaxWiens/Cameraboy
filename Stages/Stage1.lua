@@ -4,6 +4,8 @@ local Player = require "objects.Player"
 local MoveBlock = require "objects.MoveBlock"
 local Lever = require "objects.Lever"
 local Door = require "objects.Door"
+local Belt = require "objects.Belt"
+local Camera = require "objects.Camera"
 local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
 
@@ -18,11 +20,11 @@ return function()
   local tileMap = {
     2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,
     1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
     2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
   }
@@ -89,7 +91,37 @@ return function()
 
 				objects = {
           CTileGraphic(tileArrayImage, tileMap, mapWidth, mapHeight),
-				}
+          Belt(2,4, {
+            level = level,
+            on = true,
+            looking = "down"
+          }),
+          Belt(2,5, {
+            level = level,
+            on = true,
+            looking = "down"
+          }),
+          Belt(2,6, {
+            level = level,
+            on = true,
+            looking = "right"
+          }),
+          Belt(3,6, {
+            level = level,
+            on = true,
+            looking = "up"
+          }),
+          Belt(3,5, {
+            level = level,
+            on = true,
+            looking = "up"
+          }),
+          Belt(3,4, {
+            level = level,
+            on = true,
+            looking = "left"
+          }),
+        }
 			},
 			[2] = {
 				xParalax = 0,
@@ -109,7 +141,7 @@ return function()
         yParalax = 0,
 
         objects = {
-
+          Camera(0,0,{})
         }
       }
 		}
