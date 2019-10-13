@@ -31,7 +31,7 @@ return function(x, y, properties)
       icon = pauseImage
     end
 
-    draw(icon, 244, 132, 0, 0.125, 0.125)
+    draw(icon, 240, 128, 0, 0.25, 0.25)
   end
 	return public
 end

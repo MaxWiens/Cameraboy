@@ -16,6 +16,8 @@ local setCanvas = love.graphics.setCanvas
 local clear = love.graphics.clear
 local loveDraw = love.graphics.draw
 
+local music = love.audio.newSource("assets/sound/Wobbly Weeble.mp3", "stream")
+music:setLooping(true)
 function love.load()
 	Settings:setAudio()
 	love.resize(love.window.getMode())
@@ -23,7 +25,7 @@ function love.load()
 	system.loadStage(require("stages.Stage2")())	
 	system.state = {time="normal", record = false, timeSince = 0}
 	-- End Initial Loading --
-	
+	music:play()
 end
 
 function love.update(dt)

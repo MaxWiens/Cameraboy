@@ -12,7 +12,12 @@ local circle = love.graphics.circle
 local print = print
 module("objects.GameObjectTemplate")
 
-local image = newImage("assets/objects/pc.png")
+local imageUp = newImage("assets/objects/mcB.png")
+local imageDown = newImage("assets/objects/mcF.png")
+local imageLeft = newImage("assets/objects/mcL.png")
+local imageRight = newImage("assets/objects/mcR.png")
+
+
 local MOVE_COOLDOWN = 0.13
 
 return function(x, y, properties)
@@ -137,16 +142,18 @@ return function(x, y, properties)
 
 
   public.draw = function(x, y)
-    local angle = 0
     local looking = public.looking
+    local image = nil
     if      looking == "up" then
-      angle = pi
+      image = imageUp
     elseif  looking == "left" then
-      angle = pi/2
+      image = imageLeft
     elseif  looking == "right" then
-      angle = 3*pi/2
+      image = imageRight
+    elseif looking == "down" then
+      image = imageDown
     end
-    draw(image, x+(public.x-1)*TILE_SIZE+TILE_SIZE/2, y+(public.y-1)*TILE_SIZE+TILE_SIZE/2, angle, 1,1, TILE_SIZE/2, TILE_SIZE/2)
+    draw(image, x+(public.x-1)*TILE_SIZE, y+(public.y-1)*TILE_SIZE)
   end
 
   public.kill = function()
