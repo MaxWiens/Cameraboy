@@ -13,7 +13,7 @@ return function(x, y, properties)
   local _height = properties.height
   local _width = properties.width
 
-  local _objects = properties.objects
+  public.objects = properties.objects
   local _stepCount = 0
   state.time = "normal"
   state.record = false
@@ -66,7 +66,7 @@ return function(x, y, properties)
   public.isSolid = function(x,y)
     if x <= _width and x >= 1 and y <= _height and y >= 1 then
       
-      local obj = _objects[y][x]
+      local obj = public.objects[y][x]
       if obj and obj.isSolid then
         return true
       end
@@ -79,7 +79,7 @@ return function(x, y, properties)
   end
 
   public.objectAt = function(x,y)
-    return _objects[y][x]
+    return public.objects[y][x]
   end
 
 	return public

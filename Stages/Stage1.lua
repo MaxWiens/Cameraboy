@@ -1,6 +1,7 @@
 
 local Level = require "objects.Level"
 local Player = require "objects.Player"
+local MoveBlock = require "objects.MoveBlock"
 local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
 
@@ -49,8 +50,14 @@ return function()
   
   
   -- Add Objects
-  mapObjects[playery][playerx]=player
+  mapObjects[playery][playerx] = player
+  mapObjects[4][4] = MoveBlock(4,4, {
+    level = level
+  })
 
+  mapObjects[5][5] = MoveBlock(5,5, {
+    level = level
+  })
   
 
 	return {
@@ -71,7 +78,9 @@ return function()
 				yParalax = 0,
 
 				objects = {
-          player
+          player,
+          mapObjects[4][4],
+          mapObjects[5][5]
 				}
       },
       [3] = {
