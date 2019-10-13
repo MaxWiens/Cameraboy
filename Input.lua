@@ -12,10 +12,11 @@ return function()
 		"left",
 		"right",
 
+		"action",
 		"record",
 		"rewind",
-		"pause",
 		"play",
+		"delete",
 	}
 	local _inputCount = #_inputs
 
@@ -29,6 +30,7 @@ return function()
 		function() if isDown("z") or isDown("j")		then return true end return false end,
 		function() if isDown("x") or isDown("k")		then return true end return false end,
 		function() if isDown("c") or isDown("l")		then return true end return false end,
+		function() if isDown("v") or isDown(";")		then return true end return false end,
 	}
 
 	local _controller = {

@@ -22,16 +22,68 @@ return function(x, y, properties)
   public.y = y or 0
   _level = properties.level
   public.looking = properties.looking or "down" -- "up" "down" "left" "right"
-  _moveCooldown = 0
-  _history = {}
-  _historyCount = 0
-  _playbackCount = 0
+  local _moveCooldown = 0
+  local _history = {}
+  local _historyCount = 0
+  local _playbackCount = 0
   public.disabled = false
+  local _holding = false
 
 
 
   public.update = function(dt, x, y)
     local isDown = input.isDown
+    
+    if input.pressed "delete" then
+      _history = {}
+      _historyCount = 0
+      _playbackCount = 0
+    end
+
+    if input.pressed "action" then
+      local looking = public.looking
+      local objects = _level.objects
+      if      looking == "up" then
+        local obj = objects[public.y-1][public.x]
+        if obj and obj.toggle then
+          obj.toggle()
+        end
+      elseif  looking == "down" then
+        local obj = objects[public.y+1][public.x]
+        if obj and obj.toggle then
+          obj.toggle()
+        end
+      elseif  looking == "left" then
+        local obj = objects[public.y][public.x-1]
+        if obj and obj.toggle then
+          obj.toggle()
+        end
+      elseif  looking == "right" then
+        local obj = objects[public.y][public.x+1]
+        if obj and obj.toggle then
+          obj.toggle()
+        end
+      end
+    elseif input.held "action" then
+      local looking = public.looking
+      local objects = _level.objects
+      local obj = nil
+      if      looking == "up" then
+        obj = objects[public.y-1][public.x]
+      elseif  looking == "down" then
+        obj = objects[public.y+1][public.x]
+      elseif  looking == "left" then
+        obj = objects[public.y][public.x-1]
+      elseif  looking == "right" then
+        obj = objects[public.y][public.x+1]
+      end
+
+      if obj and obj.move then
+        _holding = true
+      end
+    else
+      _holding = false
+    end
 
     --print("time:",state.time, "record:",state.record, "timesince:", state.timeSince)
     if state.record then
@@ -49,22 +101,34 @@ return function(x, y, properties)
       local isSolid = _level.isSolid
       local curx = public.x
       local cury = public.y
-      if isDown"up" and not isSolid(curx, cury-1) then
-        if move("up") then
+      if isDown"up" then
+        if not isSolid(curx, cury-1) then
+          move("up")
+        end
+        --if not _holding or public.looking == "up" or public.looking == "down" then
           face("up")
+        --end
+      elseif isDown"down" then
+        if not isSolid(curx, cury+1) then
+          move("down")
         end
-      elseif isDown"down" and not isSolid(curx, cury+1) then
-        if move("down") then
+        --if not _holding or public.looking == "down" or public.looking == "up" then
           face("down")
+        --end
+      elseif isDown"left" then
+        if not isSolid(curx-1, cury) then
+          move("left")
         end
-      elseif isDown"left" and not isSolid(curx-1, cury) then
-        if move("left") then
+        --if not _holding or public.looking == "left" or public.looking == "right" then
           face("left")
+        --end
+      elseif isDown"right" then
+        if not isSolid(curx+1, cury) then
+          move("right")
         end
-      elseif isDown"right" and not isSolid(curx+1, cury) then
-        if move("right") then
+        --if not _holding or public.looking == "right" or public.looking == "left" then
           face("right")
-        end
+        --end
       end
     end
     public.disabled = false

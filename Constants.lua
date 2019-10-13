@@ -7,6 +7,8 @@ return {
     down = "up",
     left = "right",
     right = "left",
+    [true] = false,
+    [false] = true
   },
   RECORD_TOTAL = 10
 }

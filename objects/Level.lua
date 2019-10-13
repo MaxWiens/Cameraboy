@@ -19,6 +19,7 @@ return function(x, y, properties)
   state.record = false
   state.timeSince = 0
   local _previousRecording = 0
+  
   public.update = function(dt)
     local time = state.time
     local record = state.record

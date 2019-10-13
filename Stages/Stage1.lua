@@ -2,13 +2,14 @@
 local Level = require "objects.Level"
 local Player = require "objects.Player"
 local MoveBlock = require "objects.MoveBlock"
+local Lever = require "objects.Lever"
+local Door = require "objects.Door"
 local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
 
 local tilePaths = {
   "assets/tiles/wallStraight.png",
   "assets/tiles/wallCorner.png",
-  
 }
 local tileArrayImage = newArrayImage(tilePaths)
 
@@ -58,6 +59,23 @@ return function()
   mapObjects[5][5] = MoveBlock(5,5, {
     level = level
   })
+
+  mapObjects[5][7] = Door(7,5, {
+    level = level,
+    on = false,
+    horizontal = false
+  })
+
+  mapObjects[5][10] = Door(10,5, {
+    level = level,
+    on = true,
+    horizontal = false
+  })
+
+  mapObjects[7][5] = Lever(5,7, {
+    level = level,
+    links = {mapObjects[5][7], mapObjects[5][10]}
+  })
   
 
 	return {
@@ -80,7 +98,10 @@ return function()
 				objects = {
           player,
           mapObjects[4][4],
-          mapObjects[5][5]
+          mapObjects[5][5],
+          mapObjects[7][5],
+          mapObjects[5][7],
+          mapObjects[5][10]
 				}
       },
       [3] = {

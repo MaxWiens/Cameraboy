@@ -23,6 +23,12 @@ return function(x, y, properties)
   public.disabled = false
 
   public.update = function(dt,x,y)
+    if input.pressed "delete" then
+      _history = {}
+      _historyCount = 0
+      _playbackCount = 0
+    end
+
     if state.time == "rewind" then
       local hist = _history[_historyCount]
       while _historyCount > 0 and hist[1] >= state.timeSince do
