@@ -16,8 +16,6 @@ local setCanvas = love.graphics.setCanvas
 local clear = love.graphics.clear
 local loveDraw = love.graphics.draw
 
-
-
 function love.load()
 	Settings:setAudio()
 	love.resize(love.window.getMode())

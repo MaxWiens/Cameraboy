@@ -1,7 +1,7 @@
 return {
-  TILE_SIZE = 64, --16
-  VIEW_WIDTH = 1024, --256
-  VIEW_HEIGHT = 576, --144
+  TILE_SIZE = 16,
+  VIEW_WIDTH = 256,
+  VIEW_HEIGHT = 144,
   REVERSE = {
     up = "down",
     down = "up",

@@ -18,12 +18,15 @@ return function(x, y, properties)
   state.time = "normal"
   state.record = false
   state.timeSince = 0
+  local _previousRecording = 0
   public.update = function(dt)
     local time = state.time
     local record = state.record
+    -- print("prev:", _previousRecording,  "timesence:", state.timeSince)
     if time == "normal" then
       if state.record then
         state.timeSince = state.timeSince + dt
+        _previousRecording = state.timeSince
         if state.timeSince >= RECORD_TOTAL then
           state.record = false
         end
@@ -37,6 +40,9 @@ return function(x, y, properties)
       elseif input.pressed "rewind" then
         state.record = false
         state.time = "rewind"
+      elseif input.pressed "play" then
+        state.record = false
+        state.time = "play"
       end
 
     end
@@ -49,13 +55,18 @@ return function(x, y, properties)
         state.timeSince = state.timeSince - dt
       end
     elseif time == "play" then
+      if state.timeSince >= _previousRecording then
+        state.time = "normal"
+      else
+        state.timeSince = state.timeSince + dt
+      end
     end
   end
 
   public.isSolid = function(x,y)
     if x <= _width and x >= 1 and y <= _height and y >= 1 then
       
-      local obj = _objects[y][x] 
+      local obj = _objects[y][x]
       if obj and obj.isSolid then
         return true
       end

@@ -5,21 +5,27 @@ local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
 
 local tilePaths = {
-  "assets/tiles/wall.png",
+  "assets/tiles/wallStraight.png",
+  "assets/tiles/wallCorner.png",
+  
 }
 local tileArrayImage = newArrayImage(tilePaths)
 
 return function()
 
   local tileMap = {
-    1,1,1,1,1,
-    1,0,0,0,1,
-    1,0,1,0,1,
-    1,0,0,0,1,
-    1,1,1,1,1,
+    2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+    2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,
   }
-  local mapWidth = 5
-  local mapHeight = 5
+  local mapWidth = 16
+  local mapHeight = 9
 
   local mapObjects = {}
   for i=0,mapHeight do mapObjects[i] = {} end
