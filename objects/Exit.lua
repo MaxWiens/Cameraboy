@@ -8,9 +8,9 @@ local draw = love.graphics.draw
 local pi = math.pi
 local print = print
 local input = input
+local system = system
 module("objects.MoveBlock")
 local openImage = newImage("assets/objects/doorOpen (2).png")
-local closeImage = newImage("assets/objects/doorClose (2).png")
 return function(x, y, properties)
 	local public = {}
 	-- Object Body --
@@ -18,32 +18,26 @@ return function(x, y, properties)
   public.x = x or 0
   public.y = y or 0
   local _level = properties.level
-  public.on = properties.on or false
-  local _horizontal = properties.horizontal
-  public.isSolid = true
+  local _nextStage = properties.nextStage
+  local _looking = properties.looking
 
   public.update = function(dt,x,y)
-    if public.on then
-      if _level.objects[public.y][public.x] == public then
-        _level.objects[public.y][public.x] = nil
-      end
-    else
-      _level.objects[public.y][public.x] = public
+    obj = _level.objects[public.y][public.x]
+    if obj and obj.isPlayer then
+      system.loadStage(require(_nextStage)())
     end
   end
 
   public.draw = function(x, y)
-    local image = nil
     local angle = 0
-    if public.on then
-      image = openImage
-    else
-      image = closeImage
-    end
-    if not _horizontal then
+    if      _looking == "down" then
+      angle = pi
+    elseif  _looking == "right" then
       angle = pi/2
+    elseif  _looking == "left" then
+      angle = 3*pi/2
     end
-    draw(image, x+(public.x-1)*TILE_SIZE+TILE_SIZE/2, y+(public.y-1)*TILE_SIZE+TILE_SIZE/2, angle, 1, 1, TILE_SIZE/2, TILE_SIZE/2)
+    draw(image, x+(public.x-1)*TILE_SIZE+TILE_SIZE/2, y+(public.y-1)*TILE_SIZE+TILE_SIZE/2, angle, TILE_SIZE/2, TILE_SIZE/2)
   end
 
   -------------

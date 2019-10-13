@@ -5,6 +5,8 @@ local RECORD_TOTAL = require "Constants".RECORD_TOTAL
 local print = print
 module("objects.GameObjectTemplate")
 
+local MOVE_COOLDOWN = 0.1
+
 return function(x, y, properties)
   local public = {}
 	-- Object Body --
@@ -19,11 +21,29 @@ return function(x, y, properties)
   state.record = false
   state.timeSince = 0
   local _previousRecording = 0
-  
+  public.moveCooldown = 0
+  public.move = false
+  local _currentStage = properties.currentStage
+
   public.update = function(dt)
+    if public.moveCooldown > 0 then
+      print("no")
+      public.move = false
+      public.moveCooldown = public.moveCooldown - dt
+    else
+      public.move = true
+      print("Yes")
+      public.moveCooldown = MOVE_COOLDOWN
+    end
+
     local time = state.time
     local record = state.record
     -- print("prev:", _previousRecording,  "timesence:", state.timeSince)
+    
+    if input.pressed "reset" then
+      system.loadStage(require(currentStage)())
+    end
+
     if time == "normal" then
       if state.record then
         state.timeSince = state.timeSince + dt

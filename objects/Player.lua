@@ -20,6 +20,7 @@ return function(x, y, properties)
   -- Object Body --
   public.x = x or 0
   public.y = y or 0
+  public.isPlayer = true
   _level = properties.level
   public.looking = properties.looking or "down" -- "up" "down" "left" "right"
   local _moveCooldown = 0

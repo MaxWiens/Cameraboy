@@ -17,6 +17,8 @@ return function()
 		"rewind",
 		"play",
 		"delete",
+
+		"reset",
 	}
 	local _inputCount = #_inputs
 
@@ -31,6 +33,9 @@ return function()
 		function() if isDown("x") or isDown("k")		then return true end return false end,
 		function() if isDown("c") or isDown("l")		then return true end return false end,
 		function() if isDown("v") or isDown(";")		then return true end return false end,
+
+		function() if isDown("r")	then return true end return false end,
+
 	}
 
 	local _controller = {
