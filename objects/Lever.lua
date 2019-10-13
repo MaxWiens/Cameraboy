@@ -26,7 +26,7 @@ return function(x, y, properties)
   local _on = false
 
   public.update = function(dt,x,y)
-    if input.pressed "delete" then
+    if input.pressed "record" and not state.endrecord then
       _history = {}
       _historyCount = 0
       _playbackCount = 0

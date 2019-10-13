@@ -4,6 +4,7 @@ local Exit = require "objects.Exit"
 local MoveBlock = require "objects.MoveBlock"
 local Lever = require "objects.Lever"
 local Door = require "objects.Door"
+local Camera = require "objects.Camera"
 local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
 
@@ -111,7 +112,7 @@ return function()
         yParalax = 0,
 
         objects = {
-
+          Camera(0,0,{})
         }
       }
 		}

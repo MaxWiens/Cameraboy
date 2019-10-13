@@ -28,6 +28,7 @@ return function(x, y, properties)
   
 
   public.update = function(dt)
+    state.endrecord = false
     if public.moveCooldown > 0 then
       print("no")
       public.move = false
@@ -57,6 +58,7 @@ return function(x, y, properties)
       if input.pressed "record" then
         if record then
           state.record = false
+          state.endrecord = true
         else
           state.record = true
         end
@@ -67,7 +69,6 @@ return function(x, y, properties)
         state.record = false
         state.time = "play"
       end
-
     end
 
     if time == "rewind" then

@@ -11,7 +11,7 @@ local input = input
 local system = system
 local require = require
 module("objects.Exit")
-local image = newImage("assets/objects/arrow.png")
+local image = newImage("assets/objects/greyArrow.png")
 return function(x, y, properties)
 	local public = {}
   -- Object Body --

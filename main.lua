@@ -23,6 +23,7 @@ function love.load()
 	system.loadStage(require("stages.Stage2")())	
 	system.state = {time="normal", record = false, timeSince = 0}
 	-- End Initial Loading --
+	
 end
 
 function love.update(dt)
