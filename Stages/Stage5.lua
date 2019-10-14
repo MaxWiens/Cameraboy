@@ -25,7 +25,7 @@ return function()
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     0,0,0,0,5,2,2,2,2,2,2,6,0,0,0,0,
     0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
+    0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,
     0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
     0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
     0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,
@@ -45,7 +45,7 @@ return function()
     height = mapHeight,
     player = player,
     objects = mapObjects,
-	currentStage = "Stages.Stage3"
+	currentStage = "Stages.Stage5"
   })
 
   local playerx = 7
@@ -107,6 +107,15 @@ return function()
     level = level,
     links = {mapObjects[3][12]}
   })
+  mapObjects[3][11] = Door(11,3, {
+    level = level,
+    on = false,
+    horizontal = false
+  })
+  mapObjects[7][11] = Lever(11,7, {
+    level = level,
+    links = {mapObjects[3][12]}
+  })
 
 	return {
 		unlayered = {
@@ -130,11 +139,12 @@ return function()
 		  Exit(12, 3, {
 			level = level,
 			looking = "up",
-			nextStage = "Stages.Stage1"
+			nextStage = "Stages.TitleStage"
 						}),
 		  mapObjects[3][8],mapObjects[4][7],mapObjects[4][9],mapObjects[5][6],mapObjects[5][10],mapObjects[5][8],mapObjects[6][7],mapObjects[6][9],mapObjects[7][8]
 ,		  mapObjects[3][12],
-		  mapObjects[3][6]
+      mapObjects[3][6],
+      mapObjects[7][11]
 				}
       },
       [3] = {

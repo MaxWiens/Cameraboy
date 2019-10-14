@@ -4,6 +4,7 @@ local MoveBlock = require "objects.MoveBlock"
 local Lever = require "objects.Lever"
 local Door = require "objects.Door"
 local Exit = require "objects.Exit"
+local Camera = require "objects.Camera"
 local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
 
@@ -45,7 +46,7 @@ return function()
     height = mapHeight,
     player = player,
     objects = mapObjects,
-	currentStage = "Stages.Stage3"
+	currentStage = "Stages.Stage4"
   })
 
   local playerx = 7
@@ -126,7 +127,7 @@ return function()
 		  Exit(11, 2, {
 			level = level,
 			looking = "up",
-			nextStage = "Stages.Stage1"
+			nextStage = "Stages.TitleStage"
 						}),
 		  mapObjects[5][6],
 		  mapObjects[5][7],
@@ -144,7 +145,7 @@ return function()
         yParalax = 0,
 
         objects = {
-
+          Camera(0,0,{})
         }
       }
 		}

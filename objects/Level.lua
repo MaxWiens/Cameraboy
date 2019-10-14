@@ -30,12 +30,10 @@ return function(x, y, properties)
   public.update = function(dt)
     state.endrecord = false
     if public.moveCooldown > 0 then
-      print("no")
       public.move = false
       public.moveCooldown = public.moveCooldown - dt
     else
       public.move = true
-      print("Yes")
       public.moveCooldown = MOVE_COOLDOWN
     end
 

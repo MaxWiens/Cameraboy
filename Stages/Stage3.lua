@@ -3,6 +3,7 @@ local Player = require "objects.Player"
 local MoveBlock = require "objects.MoveBlock"
 local Lever = require "objects.Lever"
 local Door = require "objects.Door"
+local Exit = require "objects.Exit"
 local Camera = require "objects.Camera"
 local CTileGraphic = require "graphics.CTileGraphic"
 local newArrayImage = love.graphics.newArrayImage
@@ -103,7 +104,12 @@ return function()
 
 				objects = {
           CTileGraphic(tileArrayImage, tileMap, mapWidth, mapHeight),
-				}
+          Exit(9,2, {
+            level = level,
+            looking = "up",
+            nextStage = "Stages/Stage4"
+          })
+        }
 			},
 			[2] = {
 				xParalax = 0,
